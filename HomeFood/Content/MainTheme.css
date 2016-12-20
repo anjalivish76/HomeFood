@@ -1,0 +1,174 @@
+
+#title {
+  color: white;
+  font: bold 30px Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.subtitle
+{
+    
+  font: bold 30 px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.titleCard {
+  font: bold 25px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.invalidlogin
+{
+    font: bold 20px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: red;
+}
+
+.modelerror
+{
+    font: bold 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: red;
+}
+
+.required-indicator { color: red; font-size: 1.2em; font-weight: bold; }
+
+
+.textbox {
+  /*position: absolute;*/
+  width: 350px;
+  height: 30px;
+  /*top: 10px;*/
+  /*margin-left: 30px;*/
+  /*padding: 8px 12px;*/
+  font-family: Lato,Helvetica,Arial,sans-serif;
+  font-size: 15px;
+  line-height: 1.467;
+  color: #34495e;
+  border: 1px solid #bdc3c7;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.textarea
+{
+  font-family: Lato,Helvetica,Arial,sans-serif;
+  font-size: 15px;
+  line-height: 1.467;
+  color: #34495e;
+  border: 1px solid #bdc3c7;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.link {
+  font: 700 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  float: right;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 10px;
+    color: #9aa4af;
+}
+.link:hover {
+  color: #16a085;
+}
+ul {
+    position: relative;
+    list-style-type: none;
+    top: 60px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    width:980px;
+    margin: 0 auto;
+    font: bold 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+li {
+    float: left;
+    display: inline;
+    /* keeps it in one line */
+}
+
+actionlink
+{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    float: left;
+    display: inline;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+.active {
+    background-color: #CBE32D;
+}
+.textBody {
+  position: relative;
+  top: 120px;
+  border-radius: 5px;
+  margin: 0 auto;
+  display:flex;
+  width: 980px;
+  height: auto;
+  background-color: white;
+  border: 1px solid #bdc3c7;
+}
+.imageHolder {
+  width: 680px;
+  float: left;
+}
+.textHolder {
+  width: 280px;
+  float:right;
+  padding: 10px;
+
+}
+.nameCard {
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+p {
+  font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.comments {
+  width: 100%;
+  display:flex;
+  margin-top: 5px;
+}
+.imageSubHolder {
+  width: 60px;
+  height: 60px;
+  float: left;
+  border-radius: 2px;
+
+  border: 1px solid #bdc3c7;
+}
+.textSubHolder {
+  float: right;
+  padding: 10px;
+}
+
+.restTitle {
+  font: bold 18px "Helvetica Neue", Helvetica, Arial, sans-serif;
+ color: orangered;
+}
+
+.restDetails {
+  font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+ 
+}
+
+.restHeaders {
+  font: bold 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: right;
+}
+

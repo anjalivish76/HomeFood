@@ -1,0 +1,50 @@
+﻿@using BusinessLayer
+@model CountryModel
+
+@{
+    ViewBag.Title = "Add Reataurant";
+    
+}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script language="javascript" type="text/javascript">
+    function GetCity(_stateId) {
+        alert(_stateId);
+        var procemessage = "<option value='0'> Please wait...</option>";
+
+        $("#ddlcity").html(procemessage).show();
+        alert("before url");
+        
+        var url = 'GetCityByStaeId';
+
+        $.ajax({
+            url: url,
+            data: { stateid: _stateId },
+            cache: false,
+            type: "POST",
+            success: function (data) {
+                var markup = "<option value='0'>Select City</option>";
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+                $("#ddlcity").html(markup).show();
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+
+    }
+</script>
+<h4>
+    MVC Cascading Dropdown List Using Jquery
+</h4>
+@using (Html.BeginForm())
+{
+    @Html.DropDownListFor(m => m.StateModel, new SelectList(Model.StateModel, "StateId", "StateName"), new { @id = "ddlstate", @style = "width:200px;", @onchange = "javascript:GetCity(this.value);" })
+    <br />
+    <br />
+    <select id="ddlcity" name="ddlcity" style="width: 200px"></select>
+
+    <br /><br />
+}

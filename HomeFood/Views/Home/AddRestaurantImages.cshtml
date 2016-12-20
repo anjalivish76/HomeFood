@@ -1,0 +1,114 @@
+﻿@model BusinessLayer.Restaurant
+
+@{
+    ViewBag.Title = "Add Restaurant Images";
+}
+
+<section id="imagesForm">
+    
+    @using (Html.BeginForm("AddRestaurantImages", "Home", FormMethod.Post, new { id = "frmAddRestaurantImages", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        
+
+        <div style="margin-left:50px">
+            <table id="tblAddRestaurantImages" cellspacing="10">
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+
+                    <td colspan="2">
+                        <label class="titleCard">Add Images of your Kitchen !!</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <label class="nameCard">Upload Main Image</label>
+                    </td>
+                    <td>
+                        <input type="file" name="MainImagePath" id="MainImagePath" class="textbox" placeholder="Upload Main Image"/>
+                        
+                        @Html.HiddenFor(m => m.RestId)
+                    </td>
+
+                </tr>
+                @*<tr>
+                    <td colspan="2">
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.MainImagePath)</label>
+                    </td>
+                </tr>*@
+                <tr>
+
+                    <td>
+                        <label class="nameCard">Upload Cover Image</label>
+                    </td>
+                    <td>
+                        @*<input type="file" name="CoverImagePath" id="CoverImagePath" class="textbox"  />*@
+                        @Html.TextBox("CoverImageFile", null, new { type = "file", id = "CoverImageFile", @class = "textbox", @placeholder = "Upload Cover Image" })
+                        
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label class="nameCard">Upload Image 1</label>
+                    </td>
+                    <td>                        
+                        @Html.TextBox("Image1", null, new { type = "file", id = "Image1", @class = "textbox", @placeholder = "Upload Image 1" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="nameCard">Upload Image 2</label>
+                    </td>
+                    <td>
+                        @Html.TextBox("Image2", null, new { type = "file", id = "Image2", @class = "textbox", @placeholder = "Upload Image 2" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="nameCard">Upload Image 3</label>
+                    </td>
+                    <td>
+                        @Html.TextBox("Image3", null, new { type = "file", id = "Image3", @class = "textbox", @placeholder = "Upload Image 3" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="nameCard">Upload Image 4</label>
+                    </td>
+                    <td>
+                        @Html.TextBox("Image4", null, new { type = "file", id = "Image4", @class = "textbox", @placeholder = "Upload Image 4" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="nameCard">Upload Image 5</label>
+                    </td>
+                    <td>
+                        @Html.TextBox("Image5", null, new { type = "file", id = "Image5", @class = "textbox", @placeholder = "Upload Image 5" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="nameCard">Upload Image 6</label>
+                    </td>
+                    <td>
+                        @Html.TextBox("Image6", null, new { type = "file", id = "Image6", @class = "textbox", @placeholder = "Upload Image 6" })
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Submit" /></td>
+                </tr>
+
+            </table>
+
+        </div>
+    }
+</section>

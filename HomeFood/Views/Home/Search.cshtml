@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "Search";
+}
+
+@using BusinessLayer
+@model List<Restaurant>
+
+<h2>Search Result</h2>
+
+@foreach (var item in Model)
+{
+    
+    <div id="myDiv">
+        <table border="0" style="width: 100%; height: auto; margin-top: 10px; background-color: #CBE32D; border-style: solid; border-color:black; border-bottom-style:groove">
+            <!--First Row for Name and Picture-->
+            <tr>
+                <!--1st column for name-->
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <label class="restTitle">
+                                    <a href="@Url.Action("RestaurantDetails", "Home", new { idRest = @item.RestId })">@item.RestName</a>
+                                </label>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="restDetails">@item.AreaName</label>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="restDetails">@item.Address</label>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="restDetails">@item.Phone1 &nbsp;&nbsp; @item.Phone2</label>
+                                
+                            </td>
+
+                        </tr>
+                    </table>
+                </td>
+                <!--2nd column for picture-->
+                <td align="right">
+                    @if (@item.MainImagePath != "")
+                    { 
+                        <img src="~/Content/files/@item.MainImagePath" width="175px" height="109px"/>
+                    }
+                    else
+                    {
+                        <img src="~/Content/files/Picture1.jpg" width="175px" height="109px"/>
+                    }
+                </td>
+            </tr>
+            <!--2nd Row for other details-->
+            <tr>
+                <td colspan="2">
+
+                    <table>
+                        <!--Cuisines-->
+                        <tr>
+                            <td align="right"><label class="restHeaders">Cuisines:</label></td>
+                            <td><label class="restDetails">@item.Cuisines</label></td>
+                        </tr>
+                        <!--Hours-->
+                        <tr>
+                            <td align="right"><label class="restHeaders">Hours:</label></td>
+                            <td><label class="restDetails">@item.Hours</label></td>
+                        </tr>
+                        <!--Discount-->
+                        <tr>
+                            <td align="right"><label class="restHeaders">Discount:</label></td>
+                            <td><label class="restDetails">@item.Discount</label></td>
+                            
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+
+    @*<span>@item.RestName</span>
+    <span>@item.Address</span>
+    <br />*@
+}
+
+

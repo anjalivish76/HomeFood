@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "Restaurant Details";
+}
+
+@using BusinessLayer
+@model Restaurant
+
+
+    <div id="myDiv">
+        <table border="0" style="width: 100%; height: auto; margin-top: 10px; background-color: #CBE32D; border-style: solid; border-color:black; border-bottom-style:groove">
+            <!--First Row for Name and Picture-->
+            <tr>
+                <!--1st column for name-->
+                <td>
+                    <table cellpadding="2" cellspacing="2" border="0">
+                        <tr>
+                            <td colspan="2">
+                                <label class="titleCard">@Model.RestName</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                @if (@Model.CoverImagePath != "")
+                                {
+                                    <img src="~/Content/files/@Model.CoverImagePath" width="650" height="170"/>
+                                }   
+                                else
+                                {  
+                                    <img src="~/Content/files/Picture2.jpg" width="650" height="170"/>
+                                }
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <img src="~/Content/files/@Model.Image1" width="150" height="70" />
+                                        </td>
+                                        <td>
+                                            <img src="~/Content/files/@Model.Image2" width="150" height="70" />
+                                        </td>
+                                        <td>
+                                            <img src="~/Content/files/@Model.Image3" width="150" height="70" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="~/Content/files/@Model.Image4" width="150" height="70" />
+                                        </td>
+                                        <td>
+                                            <img src="~/Content/files/@Model.Image5" width="150" height="70" />
+                                        </td>
+                                        <td>
+                                            <img src="~/Content/files/@Model.Image6" width="150" height="70" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="right">
+                                <label class="restTitle"><a href="@Url.Action("DisplayImages", "Home", new { idRest = @Model.RestId})">Photos</a></label>
+                                @*<label class="restTitle">Photos</label>*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="200px">
+                                <label class="restTitle">Address</label><br />
+                            </td>
+                            <td width="500px">
+                                <label class="nameCard">@Model.Address</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="restTitle">Contact</label><br />
+                            </td>
+                            <td>
+                                <label class="nameCard">@Model.Phone1</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="restTitle">Cuisines</label><br />
+                            </td>
+                            <td>
+                                <label class="nameCard">@Model.Cuisines</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="restTitle">Famous For</label><br />
+                            </td>
+                            <td>
+                                <label class="nameCard">@Model.FamousFor</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="restTitle">Hours</label><br />
+                            </td>
+                            <td>
+                                <label class="nameCard">@Model.Hours</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                        </tr>
+                        @if (@Model.DeliveryCost > 0)
+                        { 
+                        <tr>
+                            <td>
+                                <label class="restTitle">Home Delivery Cost</label><br />
+                            </td>
+                            <td>
+                                <label class="nameCard">@Model.DeliveryCost</label>
+                            </td>
+                        </tr>
+                        }
+                        
+                    </table>
+                </td>
+                <!--2nd column for picture-->
+                @*<td align="right">
+                    <img src="~/Images/Picture1.jpg" />
+                </td>*@
+            </tr>
+            <!--2nd Row for other details-->
+            @*<tr>
+                <td colspan="2">
+
+                    <table>
+                        <!--Cuisines-->
+                        <tr>
+                            <td align="right"><label class="restHeaders">Cuisines:</label></td>
+                            <td><label class="restDetails">@item.Cuisines</label></td>
+                        </tr>
+                        <!--Hours-->
+                        <tr>
+                            <td align="right"><label class="restHeaders">Hours:</label></td>
+                            <td><label class="restDetails">@item.Hours</label></td>
+                        </tr>
+                        <!--Discount-->
+                        <tr>
+                            <td align="right"><label class="restHeaders">Discount:</label></td>
+                            <td><label class="restDetails">@item.Discount</label></td>
+                            
+                        </tr>
+                    </table>
+                </td>
+            </tr>*@
+
+        </table>
+    </div>
+
+
+    @*<span>@item.RestName</span>
+    <span>@item.Address</span>
+    <br />*@
+
+
+

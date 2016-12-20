@@ -1,0 +1,297 @@
+﻿@using System.Web.Mvc
+@using BusinessLayer
+@model Restaurant
+
+@{
+    ViewBag.Title = "Add Your Details";
+}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+<script language="javascript" type="text/javascript">
+    
+    $(function() {
+        $('[data-val-required]').after('<span class="required-indicator"> *</span>');
+    });
+
+    function ShowHomeDeliveryCost()
+    {
+        
+        if ($('#HomeDelivery').val() == '1') {
+            $('#HomeDeliveryCost').show();
+        }
+        else {
+            $('#HomeDeliveryCost').hide();
+        }
+    }
+
+    //$('#HomeDelivery').change(function () {
+    //    if ($(this).val() == 'Yes') {
+    //        $('#HomeDeliveryCost').show();
+    //    }
+    //    else {
+    //        $('#HomeDeliveryCost').hide();
+    //    }
+
+    //});
+
+    function FillState() {
+        var countryId = document.getElementById('CountryId').value;
+        var procemessage = "<option value='0'> Please wait...</option>";
+        $("#StateId").html(procemessage).show();
+        var url = "/Home/FillState/";
+        jQuery.ajax({
+            url: url,
+            cache: false,
+            type: "POST",
+            //dataType: "JSON",
+            data: { countryId: countryId },
+            success: function (states) {
+                var firstMessage = "<option value='0'>Select State</option>;"
+                $("#StateId").html(firstMessage); 
+                $.each(states, function (i, state) {
+                    $("#StateId").append(
+                        $('<option></option>').val(state.StateId).html(state.StateName));
+                });
+        
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
+
+    function FillCity() {
+        var stateId = document.getElementById('StateId').value;
+        var procemessage = "<option value='0'> Please wait...</option>";
+        $("#CityId").html(procemessage).show();
+        var url = "/Home/FillCity/";
+        jQuery.ajax({
+            url: url,
+            cache: false,
+            type: "POST",
+            //dataType: "JSON",
+            data: { stateId: stateId },
+            success: function (cities) {
+                var firstMessage = "<option value='0'>Select City</option>;"
+                $("#CityId").html(firstMessage);
+                $.each(cities, function (i, city) {
+                    $("#CityId").append(
+                        $('<option></option>').val(city.CityId).html(city.CityName));
+                });
+
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
+
+    function FillArea() {
+        
+        var cityId = document.getElementById('CityId').value;
+        
+        var procemessage = "<option value='0'> Please wait...</option>";
+        $("#AreaId").html(procemessage).show();
+        var url = "/Home/FillArea/";
+        jQuery.ajax({
+            url: url,
+            cache: false,
+            type: "POST",
+            //dataType: "JSON",
+            data: { cityId: cityId },
+            success: function (areas) {
+                var firstMessage = "<option value='0'>Select Area</option>;"
+                $("#AreaId").html(firstMessage);
+                $.each(areas, function (i, area) {
+                    $("#AreaId").append(
+                        $('<option></option>').val(area.AreaId).html(area.AreaName));
+                });
+
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+    }
+    
+</script>
+
+@*<hgroup class="title" style="margin-left:100px">
+    <h1>Add Restaurant Details</h1>
+</hgroup>*@
+
+<section id="loginForm">
+    @{
+        SelectList list = ViewBag.Areas;
+        SelectList listCountries = ViewBag.Countries;
+        
+}
+    @using (Html.BeginForm("AddRestaurant", "Home", FormMethod.Post, new { id = "frmAddRestaurant" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @*@Html.ValidationMessage("InvalidLogin")*@
+        
+        <div style="margin-left:50px">
+            <table id="tblAddRestaurant" cellspacing="10">
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+
+                    <td colspan="2">
+                        <label class="titleCard">Add Your Details</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+
+                    <td>
+                        @Html.TextBox("RestName", null, new { id = "RestName", @class = "textbox", @placeholder = "Name" })
+                    </td>
+                    <td>
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.RestName)</label>
+                    </td>
+                </tr>
+                @*@if (string.IsNullOrEmpty(Html.ValidationMessageFor(m => m.RestName).ToString()))                
+                { 
+                    <tr>
+                        <td>
+                            <label class="modelerror">@Html.ValidationMessageFor(m => m.RestName)</label>
+                        </td>
+                    </tr>
+                }*@
+                <tr>
+
+                    <td>@Html.TextArea("Address", null, new { cols="41", rows="5", id = "Address", @class = "textarea", @placeholder = "Address" })</td>
+                    <td>
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.Address)</label>
+                    </td>
+
+                </tr>
+                
+                <tr>
+
+                    <td>
+                        
+                    @Html.DropDownList("CountryId", listCountries, "Select Country", new { @class = "textbox", @onchange = "FillState()" })
+                    
+                    </td>
+                    <td>
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.CountryId)</label>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>@Html.DropDownList("StateId", new SelectList(Enumerable.Empty<SelectListItem>(), "StateId", "StateName"), "Select State", new { @class = "textbox", @onchange = "FillCity()" })</td>
+                    <td>
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.StateId)</label>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>@Html.DropDownList("CityId", new SelectList(Enumerable.Empty<SelectListItem>(), "CityId", "CityName"), "Select City", new { @class = "textbox", @onchange = "FillArea()" })</td>
+                    <td>
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.CityId)</label>
+                    </td>
+                </tr>
+                
+                <tr>
+
+                    <td>@Html.DropDownList("AreaId", new SelectList(Enumerable.Empty<SelectListItem>(), "AreaId", "AreaName"), "Select Area", new { @class = "textbox" })</td>
+                    <td>
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.AreaId)</label>
+                    </td>
+                </tr>
+                
+                <tr>
+
+                    <td>@Html.TextBox("Phone1", null, new { id = "Phone1", @class = "textbox", @placeholder = "Phone 1" })</td>
+                    <td>
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.Phone1)</label>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>@Html.TextBox("Phone2", null, new { id = "Phone2", @class = "textbox", @placeholder = "Phone 2" })</td>
+                </tr>
+                <tr>
+
+                    <td>@Html.TextBox("Phone3", null, new { id = "Phone3", @class = "textbox", @placeholder = "Phone 3" })</td>
+                </tr>
+                <tr>
+
+                    <td>@Html.TextBox("Cuisines", null, new { id = "Cuisines", @class = "textbox", @placeholder = "Cuisines" })</td>
+                    <td>
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.Cuisines)</label>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>@Html.TextBox("Hours", null, new { id = "Hours", @class = "textbox", @placeholder = "Hours" })</td>
+                    <td>
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.Hours)</label>
+                    </td>
+                </tr>
+                @*<tr>
+
+                    <td>@Html.TextBox("Discount", null, new { id = "Discount", @class = "textbox", @placeholder = "Discount" })</td>
+                </tr>*@
+                @*<tr>
+
+                    <td>@Html.TextBox("CostDesc", null, new { id = "CostDesc", @class = "textbox", @placeholder = "Cost Description" })</td>
+                </tr>*@
+                @*<tr>
+
+                    <td>@Html.TextBox("Highlights", null, new { id = "Highlights", @class = "textbox", @placeholder = "Highlights" })</td>
+                </tr>*@
+                <tr>
+
+                    <td>@Html.TextBox("FamousFor", null, new { id = "FamousFor", @class = "textbox", @placeholder = "Famous For" })</td>
+
+                </tr>
+                <tr>
+
+                    <td>
+                        @*@Html.DropDownList("HomeDelivery",
+                        new SelectList(Enum.GetValues(typeof(HomeDelivery))),
+                        "Home Delivery",
+                        new { @class = "textbox", @onchange = "ShowHomeDeliveryCost()" })*@
+
+                        @*@Html.DropDownList("HomeDelivery",
+                        EnumHelper.GetSelectList(typeof(HomeDelivery)),
+                        "Home Delivery",
+                        new { @class = "textbox", @onchange = "ShowHomeDeliveryCost()" })*@
+
+                        @Html.DropDownList("HomeDelivery", Model.HomeDeliveryList, "Home Delivery",
+                        new { @class = "textbox", @onchange = "ShowHomeDeliveryCost()" })
+                    </td>
+                    <td>
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.HomeDelivery)</label>
+                    </td>
+                </tr>
+                
+                    <tr>
+
+                        <td>@Html.TextBox("HomeDeliveryCost", null, new { id = "HomeDeliveryCost", @class = "textbox", @placeholder = "Home Delivery Cost" ,style="display:none"})</td>
+
+                    </tr>
+                @*<tr>
+
+                    <td><input type="file" name="MainImagePath" id="MainImagePath" class="textbox"><span class="required-indicator"> *</span></td>
+                    <td>
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.MainImagePath)</label>
+                    </td>
+                </tr>*@
+                <tr>
+                    <td><input type="submit" value="Submit & Continue" /></td>
+                </tr>
+                
+            </table>
+
+        </div>
+    }
+</section>

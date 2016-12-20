@@ -1,0 +1,87 @@
+﻿@model HomeFood.Models.RegisterModel
+@{
+    ViewBag.Title = "Sign Up";
+}
+
+@*<hgroup class="title" style="margin-left:100px">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>*@
+
+<section id="loginForm">
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "frmRegister" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationMessage("UserExists")
+        @*<fieldset>
+            <legend>Registration Form</legend>
+            <ol>
+                <li>
+                    @Html.LabelFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password)
+                </li>
+                <li>
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                    @Html.PasswordFor(m => m.ConfirmPassword)
+                </li>
+            </ol>
+            <input type="submit" value="Register" />
+        </fieldset>*@
+        
+        <div style="margin-left:100px">
+        <table id="tblLogin" cellspacing="10">
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+
+                <td colspan="2">
+                    <label class="titleCard">@ViewBag.Title</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+
+                <td>
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "textbox", placeholder = Html.DisplayNameFor(m => m.UserName) })
+                </td>
+                <td>
+                    <label class="modelerror">@Html.ValidationMessageFor(m => m.UserName)</label>
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    @Html.TextBoxFor(m => m.DisplayName, new { @class = "textbox", placeholder = Html.DisplayNameFor(m => m.DisplayName) })
+                </td>
+                <td>
+                    <label class="modelerror">@Html.ValidationMessageFor(m => m.DisplayName)</label>
+                </td>
+            </tr>
+            <tr>
+
+                <td>@Html.PasswordFor(m => m.Password, new { @class = "textbox", placeholder = Html.DisplayNameFor(m => m.Password) })</td>
+                <td><label class="modelerror">@Html.ValidationMessageFor(m => m.Password)</label></td>
+            </tr>
+            <tr>
+
+                <td>@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "textbox", placeholder = Html.DisplayNameFor(m => m.ConfirmPassword) })</td>
+                <td><label class="modelerror">@Html.ValidationMessageFor(m => m.ConfirmPassword)</label></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Register" /></td>
+            </tr>
+            
+        </table>
+        
+    </div>
+    }
+
+</section>

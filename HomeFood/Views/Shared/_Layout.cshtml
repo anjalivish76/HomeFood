@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/MainTheme.css")" />
+        @*<meta name="viewport" content="width=device-width" />*@
+        
+    </head>
+      
+<body style="background: #f5f5f5; font: bold 30px " helvetica neue", helvetica, arial, sans-serif;">
+    <header>
+        @*<div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>*@
+        <div id="header" style="position: fixed; left: 0; top: 0; right:0; background: #CBE32D; height: 50px;">
+            <div id="centerHeader" style="width:980px; margin:0 auto; padding-top: 5px;">
+                <label id="title">India's Yelp</label>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                
+                
+
+                @if (Session["UserDisplayName"] != null)
+                {
+                    <label class="link">Welcome @Session["UserDisplayName"]</label>
+                    @Html.ActionLink("Logout", "LogOff", "Account",null, new { @class="link" })
+                }
+                else if (Session["UserDisplayName"] == null && Session["LoginPage"] != null)
+                {
+                   <a class="link" href="Account/Register">Signup</a>
+                     
+                }
+                else if (Session["UserDisplayName"] == null && Session["LoginPage"] == null)
+                {
+                    <a class="link" href="Account/Login">Login</a>
+                    <a class="link" href="Account/Register">Signup</a>
+                }
+
+            </div>
+        </div>
+        <div id="navBar">
+            <ul>
+                @if (Request.Url.ToString() == "http://localhost:58969/")
+                { 
+                    <li><a class="active" href="#home">Home</a></li>
+                }
+                else
+                {
+                    <li><a href="#home">Home</a></li>
+                }
+                
+                <li><a href="~/Home/FindRestaurants">Restaurants</a></li>
+                
+                <li><a href="#contact">Write Reviews</a></li>
+                
+                <li><a href="#about">About</a></li>
+                
+                @if (Request.Url.ToString() == "http://localhost:58969/Home/AddRestaurant")
+                { 
+                    <li><a class="active" href="Home/AddRestaurant">Add Restaurant</a></li>
+                }
+                else
+                {
+                    <li><a href="~/Home/AddRestaurant">Add Restaurant</a></li>
+                }
+                
+                <li><a href="">Contact</a></li>
+                
+            </ul>
+        </div>
+        @*<div id="spaceBar"></div>*@
+    </header>
+    <div id="body" class="textBody">
+        @*@RenderSection("featured", required: false)*@
+        @*<section class="content-wrapper main-content clear-fix">*@
+            <div id="image_holder" class="imageHolder">
+                @RenderBody()
+                </div>
+        <div id="text_holder" class="textHolder">
+            <label class="titleCard">Restaurant Name</label>
+            <p>
+                This place holds some description of the restaurant
+            </p>
+            <br />
+            <div class="comments">
+                <div id="image_sub_holder" class="imageSubHolder">
+                    <img src="~/Images/profile.jpg" style="width: 100%; height: auto; "></img>
+                </div>
+                <div id="text_sub_holder" class="textSubHolder">
+                    <label class="nameCard">Username Lastname</label>
+                    <p>
+                        I love this place!
+                    </p>
+                </div>
+            </div>
+            <div class="comments">
+                <div id="image_sub_holder" class="imageSubHolder">
+                    <img src="~/Images/profile.jpg" style="width: 100%; height: auto; "></img>
+                </div>
+                <div id="text_sub_holder" class="textSubHolder">
+                    <label class="nameCard">Username Lastname</label>
+                    <p>
+                        I love this place!
+                    </p>
+                </div>
+            </div>
+            <div class="comments">
+                <div id="image_sub_holder" class="imageSubHolder">
+                    <img src="~/Images/profile.jpg" style="width: 100%; height: auto; "></img>
+                </div>
+                <div id="text_sub_holder" class="textSubHolder">
+                    <label class="nameCard">Username Lastname</label>
+                    <p>
+                        I love this place!
+                    </p>
+                </div>
+            </div>
+        </div>
+@*</section>*@
+    </div>
+    @*<footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+            </div>
+        </div>
+    </footer>*@
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @RenderSection("scripts", required: false)
+</body>
+</html>

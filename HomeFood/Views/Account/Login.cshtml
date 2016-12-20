@@ -1,0 +1,87 @@
+﻿@model HomeFood.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+
+
+@*<hgroup class="subtitle" style="margin-left:110px">
+    <h1>Enter Your Login Credentials</h1>
+</hgroup>*@
+
+
+
+<section id="loginForm">
+
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "frmLogin" }))
+    {
+        @Html.AntiForgeryToken()
+        @*@Html.ValidationSummary(true)*@
+        
+
+        <div style="margin-left:100px">
+            <table id="tblLogin" cellspacing="10">
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+
+                    <td colspan="2">
+                        <label class="titleCard">Enter Your Login Credentials</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                @if (@Html.ValidationMessage("InvalidLogin") != null)
+                {
+                    <tr>
+
+                        <td colspan="2">
+                            <label class="invalidlogin">@Html.ValidationMessage("InvalidLogin")</label>
+                        </td>
+
+                    </tr>
+                }
+                <tr>
+
+                    <td>
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "textbox", placeholder = Html.DisplayNameFor(m => m.UserName) })
+                        
+                    </td>
+                    <td>
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.UserName)</label>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        @Html.PasswordFor(m => m.Password, new { @class = "textbox", placeholder = Html.DisplayNameFor(m => m.Password) })
+                        
+                    </td>
+                    <td>
+                        <label class="modelerror">@Html.ValidationMessageFor(m => m.Password)</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><input type="submit" value="Login" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p>@Html.ActionLink("Signup", "Register") if you don't have an account.</p></td>
+                </tr>
+            </table>
+
+        </div>
+    }
+</section>
+
+@*<section class="social" id="socialLoginForm">
+        <h2>Use another service to log in.</h2>
+        @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+    </section>*@
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "FindRestaurants";
+}
+
+<h2>FindRestaurants</h2>
+
+@using (Html.BeginForm("Search", "Home", FormMethod.Post, new { @id="SearchForm"}))
+{ 
+<table id="tblFindRestaurants">
+    <tr>
+        @*<td>Area</td>*@
+        <td>@Html.TextBox("AreaName", null, new { id = "AreaName", @class = "textbox", @placeholder = "AreaName" })</td>
+    </tr>
+    <tr>
+        @*<td>City</td>*@
+        <td>@Html.TextBox("CityName", null, new { id = "CityName", @class = "textbox", @placeholder = "CityName" })</td>
+    </tr>
+    <tr>
+        @*<td>State</td>*@
+        <td>@Html.TextBox("StateName", null, new { id = "StateName", @class = "textbox", @placeholder = "StateName" })</td>
+    </tr>
+    <tr>
+        @*<td>Country</td>*@
+        <td>@Html.TextBox("CountryName", null, new { id = "CountryName", @class = "textbox", @placeholder = "CountryName" })</td>
+    </tr>
+    <tr>
+        <td><input type="submit" value="Search" /></td>
+    </tr>
+</table>
+}
